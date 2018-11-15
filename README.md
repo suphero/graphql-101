@@ -14,7 +14,7 @@ yarn
 yarn dev
 ```
 
-## Example
+## Demo app
 
 https://graphql-101.herokuapp.com/
 
