@@ -29,25 +29,25 @@ https://graphql-101.herokuapp.com/
 #### Get Post
 
 ```graphql
-{ post(_id: \"5bed274c014e45d7a93046c0\") { _id title content comments { _id postId content } } }
+{ post(_id: "5bed274c014e45d7a93046c0") { _id title content comments { _id postId content } } }
 ```
 
 #### GetComment
 
 ```graphql
-{ comment(_id: \"5bed282760666dd83f7f017c\") { _id postId content post { _id title content } } }
+{ comment(_id: "5bed282760666dd83f7f017c") { _id postId content post { _id title content } } }
 ```
 
 #### Create Post
 
 ```graphql
-mutation { createPost(title:\"hello\", content:\"world\") { _id title content comments { content } } }
+mutation { createPost(title: "hello", content: "world") { _id title content comments { content } } }
 ```
 
 #### Create Comment
 
 ```graphql
-mutation { createComment(postId: \"5bed2a4f564b4fd99fa8041d\", content: \"deneme123\") { _id content postId } }
+mutation { createComment(postId: "5bed2a4f564b4fd99fa8041d", content: "deneme123") { _id content postId } }
 ```
 
 ## Slide
