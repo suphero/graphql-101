@@ -1,17 +1,18 @@
 const Post = require('./models/post');
 const Comment = require('./models/comment');
+const {Types} = require('mongoose');
 
 const resolvers = {
   Query: {
-    post: (root, {_id}) => Post.findOne(ObjectId(_id)),
+    post: (root, args) => Post.findOne(Types.ObjectId(args._id)),
     posts: () => Post.find({}),
-    comment: (root, {_id}) => Comment.findOne(ObjectId(_id)),
+    comment: (root, args) => Comment.findOne(Types.ObjectId(args._id)),
   },
   Post: {
     comments: (post) => Comment.find({postId: post._id})
   },
   Comment: {
-    post: (comment) => Post.findOne(comment.postId)
+    post: (comment) => Post.findOne(Types.ObjectId(comment.postId))
   },
   Mutation: {
     createPost: (root, args) => {

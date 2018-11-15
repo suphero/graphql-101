@@ -13,3 +13,7 @@ npm run dev
 yarn
 yarn dev
 ```
+
+## Postman
+
+https://www.getpostman.com/collections/a713446844651b5e7e11

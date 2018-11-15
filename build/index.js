@@ -453,15 +453,15 @@ const Post = __webpack_require__(/*! ./models/post */ "./src/models/post.js");
 
 const Comment = __webpack_require__(/*! ./models/comment */ "./src/models/comment.js");
 
+const {
+  Types
+} = __webpack_require__(/*! mongoose */ "mongoose");
+
 const resolvers = {
   Query: {
-    post: (root, {
-      _id
-    }) => Post.findOne(ObjectId(_id)),
+    post: (root, args) => Post.findOne(Types.ObjectId(args._id)),
     posts: () => Post.find({}),
-    comment: (root, {
-      _id
-    }) => Comment.findOne(ObjectId(_id))
+    comment: (root, args) => Comment.findOne(Types.ObjectId(args._id))
   },
   Post: {
     comments: post => Comment.find({
@@ -469,7 +469,7 @@ const resolvers = {
     })
   },
   Comment: {
-    post: comment => Post.findOne(comment.postId)
+    post: comment => Post.findOne(Types.ObjectId(comment.postId))
   },
   Mutation: {
     createPost: (root, args) => {
