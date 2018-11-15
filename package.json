@@ -1,0 +1,20 @@
+{
+  "name": "graphql-101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "graphpack",
+    "build": "graphpack build",
+    "start": "node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "graphpack": "^1.0.4"
+  },
+  "dependencies": {
+    "mongoose": "^5.3.12"
+  }
+}
