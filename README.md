@@ -18,7 +18,7 @@ yarn dev
 
 ## Demo app
 
-https://graphql-101.herokuapp.com/
+https://graph-101.herokuapp.com/
 
 ### Sample Queries
 

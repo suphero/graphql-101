@@ -149,16 +149,16 @@ const webpack = __webpack_require__(/*! webpack */ "webpack");
 
 const nodeExternals = __webpack_require__(/*! webpack-node-externals */ "webpack-node-externals");
 
-const IS_DEV = "development" !== 'production';
-const IS_WEBPACK = typeof __webpack_require__.m === 'object';
+const isDev = "development" !== 'production';
+const isWebpack = typeof __webpack_require__.m === 'object';
 const hasBabelRc = fs.existsSync(path.resolve('babel.config.js'));
 
-if (hasBabelRc && !IS_WEBPACK) {
+if (hasBabelRc && !isWebpack) {
   console.info('🐠 Using babel.config.js defined in your app root');
 }
 
 module.exports = {
-  devtool: IS_DEV ? 'sourcemap' : 'none',
+  devtool: 'source-map',
   entry: {
     // We take care of setting up entry file under lib/index.js
     index: ['graphpack']
@@ -169,7 +169,7 @@ module.exports = {
   externals: [nodeExternals({
     whitelist: [/^graphpack$/]
   })],
-  mode: IS_DEV ? 'development' : 'production',
+  mode: isDev ? 'development' : 'production',
   module: {
     rules: [{
       test: /\.(gql|graphql)/,
@@ -212,7 +212,7 @@ module.exports = {
     GRAPHPACK_SRC_DIR: path.resolve(process.cwd(), 'src'),
     NODE_ENV: 'development'
   }), new FriendlyErrorsWebpackPlugin({
-    clearConsole: IS_DEV
+    clearConsole: isDev
   })],
   resolve: {
     extensions: ['.ts', '.js']
@@ -345,13 +345,12 @@ function webpackContext(req) {
 	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) { // check for number or string
+	if(!__webpack_require__.o(map, req)) {
 		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
-	return id;
+	return map[req];
 }
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
@@ -379,13 +378,12 @@ function webpackContext(req) {
 	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) { // check for number or string
+	if(!__webpack_require__.o(map, req)) {
 		var e = new Error("Cannot find module '" + req + "'");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
-	return id;
+	return map[req];
 }
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
